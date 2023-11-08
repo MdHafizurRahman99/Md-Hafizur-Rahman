@@ -10,7 +10,40 @@
 </head>
 
 <body>
-    <form method="POST" action="{{ route('task.store') }}">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">SI No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Completed</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $i = 1;
+            @endphp
+            @foreach ($tasks as $task)
+                @php
+                    $i = 0;
+                    $i++;
+                @endphp
+                <tr>
+                    <th scope="row">{{ $i }} </th>
+                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->description }}</td>
+                    <td>{{ $task->completed }}</td>
+                    <td>@mdo</td>
+                </tr>
+            @endforeach
+
+
+
+
+        </tbody>
+    </table>
+    {{-- <form method="POST" action="{{ route('task.store') }}">
         @csrf
         <div class="mb-3">
             <label class="form-label">Title</label>
@@ -28,7 +61,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </form> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>

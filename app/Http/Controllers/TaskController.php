@@ -12,6 +12,11 @@ class TaskController extends Controller
      */
     public function index()
     {
+        return view("crud.list", [
+
+
+            "tasks" => Task::all()
+        ]);
         //
     }
 
@@ -29,10 +34,26 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
-        $this->validate($request, [
-            "title" => "required" | "string",
-        ]);
+        // return $request;
+        if ($request->completed == 1) {
+            Task::create([
+                "title" => $request->title,
+                "description" => $request->description,
+                "completed" => $request->completed,
+            ]);
+        } else {
+            Task::create([
+                "title" => $request->title,
+                "description" => $request->description,
+                "completed" => 0,
+            ]);
+        }
+
+        return view("dashboard");
+        // $this->validate($request, [
+        //     "title" => "required" | "string",
+        //     "description" => "required" | "string",
+        // ]);
         //
     }
 
